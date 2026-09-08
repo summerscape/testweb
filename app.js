@@ -3,7 +3,7 @@
 
 // GitHub Repository Config
 // To use real GitHub Issues as DB, replace with your 'username/repo'
-const GITHUB_REPO = 'username/repo';
+const GITHUB_REPO = 'summerscape/testweb';
 const USE_MOCK_DATA = true; // Set to false to try fetching from actual GitHub API
 
 // DOM Elements
