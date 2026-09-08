@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub DB 웹사이트</title>
+    <!-- Modern Font: Pretendard -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <nav class="glass-nav">
+        <div class="nav-brand">
+            <i class="fa-brands fa-github"></i>
+            <span>GitHub Web</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" data-route="main" class="active"><i class="fa-solid fa-house"></i> 메인페이지</a></li>
+            <li><a href="#" data-route="board"><i class="fa-solid fa-list"></i> 게시판</a></li>
+            <li><a href="#" data-route="guestbook"><i class="fa-solid fa-book-open"></i> 방명록</a></li>
+            <li><a href="#" data-route="gallery"><i class="fa-solid fa-image"></i> 갤러리</a></li>
+        </ul>
+        <div class="mobile-menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="main-layout">
+        <div id="app-container" class="page-container glass-panel">
+            <!-- Content will be dynamically injected here by JS -->
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
