@@ -76,7 +76,7 @@ const views = {
             if (!USE_MOCK_DATA) {
                 try {
                     // Example of real GitHub fetch
-                    // const res = await fetch(\`https://api.github.com/repos/\${GITHUB_REPO}/issues?labels=board\`);
+                    // const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues?labels=board`);
                     // data = await res.json();
                 } catch (e) { console.error(e); }
             }
@@ -238,7 +238,7 @@ navLinks.forEach(link => {
         const route = e.currentTarget.dataset.route;
         navigateTo(route);
         // Optional: Update URL hash for history support
-        window.history.pushState(null, '', \`#\${route}\`);
+        window.history.pushState(null, '', `#${route}`);
     });
 });
 
