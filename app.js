@@ -103,27 +103,31 @@ const views = {
         let content = `
             <div class="page-content">
                 <h1 class="page-title">방명록</h1>
-                <p class="description">환영합니다! 방명록을 남겨주세요. (현재는 프론트엔드 모의 데이터로 동작합니다)</p>
-                
-                <div class="guestbook-form">
-                    <div class="form-group">
-                        <input type="text" id="gb-name" class="form-control" placeholder="이름 (예: 방문자)">
-                    </div>
-                    <div class="form-group">
-                        <textarea id="gb-content" class="form-control" placeholder="여기에 방명록 내용을 적어주세요..."></textarea>
-                    </div>
-                    <button class="btn" onclick="addGuestbookEntry()"><i class="fa-solid fa-paper-plane"></i> 작성하기</button>
+                <p class="description">환영합니다! GitHub 계정으로 로그인하여 영구적으로 보존되는 방명록을 남겨주세요.</p>
+                <div id="guestbook-content" style="margin-top: 30px;">
+                    <!-- Utterances will load here -->
+                    <div class="loader"><div class="spinner"></div></div>
                 </div>
-
-                <div id="guestbook-content"><div class="loader"><div class="spinner"></div></div></div>
             </div>
         `;
 
         setTimeout(() => {
             const container = document.getElementById('guestbook-content');
             if (!container) return;
-            renderGuestbook(container);
-        }, 500);
+            
+            container.innerHTML = ''; // Clear loader
+            
+            const script = document.createElement('script');
+            script.src = 'https://utteranc.es/client.js';
+            script.setAttribute('repo', GITHUB_REPO);
+            script.setAttribute('issue-term', 'pathname'); 
+            script.setAttribute('label', 'guestbook');
+            script.setAttribute('theme', 'github-dark');
+            script.setAttribute('crossorigin', 'anonymous');
+            script.async = true;
+            
+            container.appendChild(script);
+        }, 300);
 
         return content;
     },
@@ -159,49 +163,7 @@ const views = {
     }
 };
 
-// Global function to add mock guestbook entry
-window.addGuestbookEntry = function () {
-    const nameInput = document.getElementById('gb-name');
-    const contentInput = document.getElementById('gb-content');
 
-    if (!nameInput.value || !contentInput.value) {
-        alert('이름과 내용을 모두 입력해주세요.');
-        return;
-    }
-
-    const newEntry = {
-        id: Date.now(),
-        author: nameInput.value,
-        content: contentInput.value,
-        date: new Date().toISOString().split('T')[0]
-    };
-
-    mockData.guestbook.unshift(newEntry);
-    nameInput.value = '';
-    contentInput.value = '';
-
-    const container = document.getElementById('guestbook-content');
-    if (container) {
-        renderGuestbook(container);
-    }
-};
-
-function renderGuestbook(container) {
-    let html = '<div class="guestbook-entries">';
-    mockData.guestbook.forEach(item => {
-        html += `
-            <div class="guestbook-entry">
-                <div class="entry-author">
-                    <span>${item.author}</span>
-                    <span class="entry-date">${item.date}</span>
-                </div>
-                <div class="entry-content">${item.content}</div>
-            </div>
-        `;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-}
 
 // Router logic
 async function navigateTo(route) {
