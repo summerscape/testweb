@@ -238,7 +238,7 @@ navLinks.forEach(link => {
         const route = e.currentTarget.dataset.route;
         navigateTo(route);
         // Optional: Update URL hash for history support
-        window.history.pushState(null, '', `#${route}`);
+        window.location.hash = route;
     });
 });
 
